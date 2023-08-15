@@ -4,3 +4,21 @@
 
 
 3|flQeo1zKwDyNUzEuqXAS3C7xISeYHpgkve3E0iYl
+
+Para limitar el alcance del usuario se puede conparar los datos del usuario registrado
+
+    @if (Auth::user()->id_role == 2)
+        <p>Hola :)</p>
+
+    @endif
+
+por si algun dia lo necesito, este codigo se puede usar para consultar si el usuario esta activo o no
+ruta vendor/laravel/ui/auth
+protected function attemptLogin(Request $request)
+    {
+        $extra = $request;
+        $extra['estado_cuenta']='activo';
+        return $this->guard()->attempt(
+            $this->credentials($extra), $request->boolean('remember')
+        );
+    }
