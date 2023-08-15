@@ -21,6 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 return response()->json(["done",Auth::user()->name],200);
 
 });
+Route::middleware('auth:sanctum')->post('/post/employee',[ApiController::class,'setEmployee']);
+Route::middleware('auth:sanctum')->get('/set/employee/{id}',[ApiController::class,'getIdEmployee']);
+Route::middleware('auth:sanctum')->put('/update/employee/{id}',[ApiController::class,'setIdEmployee']);
 
 Route::get('/hola',[ApiController::class,'hola']);
 Route::post('/login',[ApiController::class,'login']);

@@ -12,7 +12,8 @@ class ApiController extends Controller
 {
     //
 
-    function hola(Request $request){
+   public function hola(Request $request)
+    {
         $users= User::all();
         $employe = Employee::all();
         return response()->json($employe,200);
@@ -80,7 +81,25 @@ class ApiController extends Controller
         }
     }
 
+    public function setEmployee(Request $request){
+        //
+        $data = $request->only('nombre','apellido');
+        $response = Employee::create($data);
 
+        return response()->json([$response->id,'sucess'],200);
+    }
+
+    public function getIdEmployee(Request $request, $id){
+        $employe = Employee::find($id);
+
+        return response()->json($employe,200);
+    }
+    public function setIdEmployee(Request $request, $id){
+        $data = $request->only('nombre','apellido');
+        $employe = Employee::find($id);
+        $employe->update($data);
+        return response()->json('ok',200);
+    }
 
 
 
